@@ -2,8 +2,8 @@
 const express = require('express');
 const cors = require('cors');
 
-const postPG = require('./routes/postPGRouter');
-const postORM = require('./routes/postORMRouter');
+const postPg = require('../routes/postPgRouter');
+const postOrm = require('../routes/postOrmRouter');
 
 class Server {
 
@@ -27,8 +27,8 @@ class Server {
         this.app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
     }
     routes() {
-        this.app.use(this.apiPaths.pg, postPG);
-        this.app.use(this.apiPaths.sequelize, postORM);
+        this.app.use(this.apiPaths.pg, postPg);
+        this.app.use(this.apiPaths.sequelize, postOrm);
     }
     listen() {
         this.app.listen(this.port, () => {
